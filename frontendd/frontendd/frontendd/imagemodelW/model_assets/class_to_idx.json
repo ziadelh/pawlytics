@@ -1,0 +1,11 @@
+{
+  "bacterial_infection": 0,
+  "dermatitis": 1,
+  "eye_redness": 2,
+  "fleas": 3,
+  "fungal_infection": 4,
+  "healthy": 5,
+  "keratosis": 6,
+  "mange": 7,
+  "nasal_discharge": 8
+}

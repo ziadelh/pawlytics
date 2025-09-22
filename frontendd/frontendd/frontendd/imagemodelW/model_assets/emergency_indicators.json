@@ -1,0 +1,8 @@
+{
+  "difficulty_breathing": "EMERGENCY: Seek immediate medical care",
+  "swollen_face": "URGENT: Could indicate allergic reaction",
+  "high_fever": "URGENT: May indicate systemic infection",
+  "rapid_spread": "URGENT: Condition worsening quickly",
+  "vision_changes": "EMERGENCY: Eye symptoms affecting vision",
+  "lethargy": "URGENT: Systemic involvement possible"
+}

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pawlytics – AI-Powered Pet Health</title>
+  <link rel="stylesheet" href="/styles/home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script defer src="/scripts/home.js"></script>
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader-wrapper" id="loader-wrapper">
+    <div class="loader">
+      <div class="loader-circle"></div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="logo-icon">🐾</div>
+        <span class="logo-text">Pawlytics</span>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how-it-works" class="nav-link">How it Works</a>
+        <a href="/analyze" class="nav-link">Analyze</a>
+        <div class="nav-actions">
+          <% if (typeof user !== 'undefined' && user) { %>
+            <a href="/dashboard" class="btn-secondary">Dashboard</a>
+            <form method="POST" action="/logout" class="inline-form">
+              <button type="submit" class="btn-primary">Logout</button>
+            </form>
+          <% } else { %>
+            <a href="/login" class="btn-secondary">Login</a>
+            <a href="/signup" class="btn-primary">Get Started</a>
+          <% } %>
+        </div>
+      </div>
+      <button class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Welcome Messages -->
+  <% if (welcome) { %>
+    <div class="welcome-message success">
+      <div class="message-content">
+        <span class="message-icon">🎉</span>
+        <div class="message-text">
+          <h3>Welcome to Pawlytics, <%= user.name %>!</h3>
+          <p>Your account has been created successfully. Start analyzing your pet's health!</p>
+        </div>
+        <button class="close-message" onclick="this.parentElement.parentElement.remove()">×</button>
+      </div>
+    </div>
+  <% } %>
+  
+  <% if (login) { %>
+    <div class="welcome-message info">
+      <div class="message-content">
+        <span class="message-icon">👋</span>
+        <div class="message-text">
+          <h3>Welcome back, <%= user.name %>!</h3>
+          <p>Ready to check on your pet's health?</p>
+        </div>
+        <button class="close-message" onclick="this.parentElement.parentElement.remove()">×</button>
+      </div>
+    </div>
+  <% } %>
+  
+  <% if (logout) { %>
+    <div class="welcome-message info">
+      <div class="message-content">
+        <span class="message-icon">👋</span>
+        <div class="message-text">
+          <h3>You've been logged out successfully!</h3>
+          <p>Thanks for using Pawlytics. Come back soon!</p>
+        </div>
+        <button class="close-message" onclick="this.parentElement.parentElement.remove()">×</button>
+      </div>
+    </div>
+  <% } %>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-background">
+      <div class="hero-shape shape-1"></div>
+      <div class="hero-shape shape-2"></div>
+      <div class="hero-shape shape-3"></div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-icon">✨</span>
+          <span>AI-Powered Pet Health</span>
+        </div>
+        <h1 class="hero-title">
+          Keep Your <span class="gradient-text">Furry Friends</span><br>
+          Healthy & Happy
+        </h1>
+        <p class="hero-description">
+          Advanced AI analysis for pet symptoms, comprehensive health tracking, 
+          and instant veterinary insights. Your pet's wellness, simplified.
+        </p>
+        <div class="hero-actions">
+          <a href="/signup" class="btn-primary btn-large">
+            <span>Start Free Analysis</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="/analyze" class="btn-outline btn-large">Try Demo</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Pets Analyzed</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Accuracy Rate</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">AI Support</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="app-interface">
+              <div class="app-header">
+                <div class="app-title">Health Analysis</div>
+                <div class="app-status">AI Processing...</div>
+              </div>
+              <div class="app-content">
+                <div class="analysis-card">
+                  <div class="analysis-icon">🔍</div>
+                  <div class="analysis-text">Analyzing symptoms...</div>
+                  <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Features</div>
+        <h2 class="section-title">Everything Your Pet Needs</h2>
+        <p class="section-description">
+          Comprehensive AI-powered tools to keep your furry friends healthy and happy
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>AI Symptom Analysis</h3>
+          <p>Upload photos, audio, or describe symptoms for instant AI-powered health analysis</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M3 7V5C3 3.89543 3.89543 3 5 3H19C20.1046 3 21 3.89543 21 5V7M3 7L5 21H19L21 7M3 7H21M9 11V17M15 11V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Health Tracking</h3>
+          <p>Monitor your pet's health history, medications, and vaccination schedules</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Multi-Modal Input</h3>
+          <p>Support for text, images, and audio analysis for comprehensive insights</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M9 19C9 20.1046 9.89543 21 11 21H13C14.1046 21 15 20.1046 15 19V18H9V19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 1V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.364 5.636L16.95 7.05" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7.05 7.05L5.636 5.636" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.364 18.364L16.95 16.95" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7.05 16.95L5.636 18.364" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>24/7 Monitoring</h3>
+          <p>Continuous health monitoring with instant alerts and recommendations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge">Process</div>
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-description">
+          Get started in minutes with our simple, intuitive process
+        </p>
+      </div>
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Create Account</h3>
+            <p>Sign up and add your pet's profile with basic information</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Upload Symptoms</h3>
+            <p>Describe symptoms, upload photos, or record audio of your pet</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>AI Analysis</h3>
+            <p>Our AI analyzes the data and provides instant health insights</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3>Get Results</h3>
+            <p>Receive detailed analysis, recommendations, and next steps</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call To Action Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Keep Your Pet Healthy?</h2>
+        <p>Join thousands of pet owners who trust Pawlytics for their pet's health</p>
+        <div class="cta-actions">
+          <a href="/signup" class="btn-primary btn-large">Get Started Free</a>
+          <a href="/analyze" class="btn-outline btn-large">Try Demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-icon">🐾</div>
+          <span class="logo-text">Pawlytics</span>
+        </div>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How it Works</a>
+          <a href="/analyze">Analyze</a>
+          <a href="/login">Login</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Pawlytics. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

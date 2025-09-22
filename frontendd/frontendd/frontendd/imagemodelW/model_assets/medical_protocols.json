@@ -1,0 +1,91 @@
+{
+  "bacterial_infection": {
+    "treatments": [
+      "Topical antibiotics (mupirocin)",
+      "Oral antibiotics (cephalexin)",
+      "Wound cleaning",
+      "Warm compresses"
+    ],
+    "emergency": false,
+    "urgency": "moderate"
+  },
+  "dermatitis": {
+    "treatments": [
+      "Topical corticosteroids",
+      "Moisturizers",
+      "Antihistamines",
+      "Avoid triggers"
+    ],
+    "emergency": false,
+    "urgency": "low"
+  },
+  "eye_redness": {
+    "treatments": [
+      "Artificial tears",
+      "Cool compresses",
+      "Antibiotic eye drops (if bacterial)",
+      "Avoid rubbing"
+    ],
+    "emergency": true,
+    "urgency": "high"
+  },
+  "fleas": {
+    "treatments": [
+      "Flea control on pet",
+      "Topical anti-itch creams",
+      "Oral antihistamines",
+      "Environmental cleaning"
+    ],
+    "emergency": false,
+    "urgency": "low"
+  },
+  "fungal_infection": {
+    "treatments": [
+      "Antifungal creams (clotrimazole)",
+      "Oral antifungals (terbinafine)",
+      "Keep area dry",
+      "Antifungal powders"
+    ],
+    "emergency": false,
+    "urgency": "moderate"
+  },
+  "healthy": {
+    "treatments": [
+      "Maintain skin hygiene",
+      "Regular moisturizing",
+      "Sun protection"
+    ],
+    "emergency": false,
+    "urgency": "none"
+  },
+  "keratosis": {
+    "treatments": [
+      "Moisturizers with urea/lactic acid",
+      "Gentle exfoliation",
+      "Topical retinoids",
+      "Laser therapy for severe cases"
+    ],
+    "emergency": false,
+    "urgency": "low"
+  },
+  "mange": {
+    "treatments": [
+      "Veterinary-prescribed acaricides",
+      "Medicated dips",
+      "Oral medications",
+      "Environmental decontamination"
+    ],
+    "emergency": true,
+    "urgency": "high"
+  },
+  "nasal_discharge": {
+    "treatments": [
+      "Saline nasal spray",
+      "Decongestants",
+      "Antihistamines if allergic",
+      "Humidifier"
+    ],
+    "emergency": false,
+    "urgency": "moderate"
+  }
+}

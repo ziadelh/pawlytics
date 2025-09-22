@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Pet Health Monitor</title>
+    <link rel="stylesheet" href="/styles/dashboard.css">
+    <link rel="stylesheet" href="/styles/modals.css">
+    <link rel="stylesheet" href="/styles/notifications.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>🐕 Pet Health Monitor</h2>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/analyze" class="nav-link">Analyze</a>
+                <a href="/add-dog" class="nav-link">Add Pet</a>
+                <a href="/security" class="nav-link">Security</a>
+                <form action="/logout" method="POST" class="inline-form">
+                    <button type="submit" class="btn-logout">Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="dashboard-container">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h1>Welcome back, <%= user.name %>!</h1>
+                <p>Here's your pet health overview</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <h3 id="totalLogs">0</h3>
+                        <p>Total Health Logs</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-content">
+                        <h3 id="pendingLogs">0</h3>
+                        <p>Pending Analysis</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <h3 id="completedLogs">0</h3>
+                        <p>Completed Analysis</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🚨</div>
+                    <div class="stat-content">
+                        <h3 id="emergencyLogs">0</h3>
+                        <p>Emergency Cases</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="dashboard-grid">
+                <div class="card pets-card">
+                    <div class="card-header">
+                        <h3>🐾 My Pets</h3>
+                        <a href="/add-dog" class="btn-primary">+ Add Pet</a>
+                    </div>
+                    <div class="card-content">
+                        <div id="petsList" class="pets-list">
+                            <div class="loading">Loading pets...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Health Logs -->
+                <div class="card logs-card">
+                    <div class="card-header">
+                        <h3>📋 Recent Health Logs</h3>
+                        <a href="#" class="btn-secondary">View All</a>
+                    </div>
+                    <div class="card-content">
+                        <div id="recentLogs" class="logs-list">
+                            <div class="loading">Loading logs...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Health Analytics -->
+                <div class="card analytics-card">
+                    <div class="card-header">
+                        <h3>📈 Health Analytics</h3>
+                        <div class="analytics-tabs">
+                            <button class="tab-btn active" data-tab="trends">Trends</button>
+                            <button class="tab-btn" data-tab="symptoms">Symptoms</button>
+                            <button class="tab-btn" data-tab="risks">Risks</button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="tab-content active" id="trends">
+                            <div class="chart-container">
+                                <canvas id="healthChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="symptoms">
+                            <div class="symptom-stats">
+                                <div class="symptom-item">
+                                    <span class="symptom-name">Fever</span>
+                                    <div class="symptom-bar">
+                                        <div class="symptom-fill" style="width: 30%"></div>
+                                    </div>
+                                    <span class="symptom-count">3</span>
+                                </div>
+                                <div class="symptom-item">
+                                    <span class="symptom-name">Lethargy</span>
+                                    <div class="symptom-bar">
+                                        <div class="symptom-fill" style="width: 60%"></div>
+                                    </div>
+                                    <span class="symptom-count">6</span>
+                                </div>
+                                <div class="symptom-item">
+                                    <span class="symptom-name">Loss of Appetite</span>
+                                    <div class="symptom-bar">
+                                        <div class="symptom-fill" style="width: 45%"></div>
+                                    </div>
+                                    <span class="symptom-count">4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="risks">
+                            <div class="risk-assessment">
+                                <div class="risk-score">
+                                    <div class="score-circle">
+                                        <span class="score-number">85</span>
+                                        <span class="score-label">Health Score</span>
+                                    </div>
+                                </div>
+                                <div class="risk-factors">
+                                    <div class="risk-item low">
+                                        <span class="risk-name">Age</span>
+                                        <span class="risk-level">Low Risk</span>
+                                    </div>
+                                    <div class="risk-item medium">
+                                        <span class="risk-name">Activity</span>
+                                        <span class="risk-level">Medium Risk</span>
+                                    </div>
+                                    <div class="risk-item low">
+                                        <span class="risk-name">Diet</span>
+                                        <span class="risk-level">Low Risk</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Notifications -->
+                <div class="card notifications-card">
+                    <div class="card-header">
+                        <h3>🔔 Smart Notifications</h3>
+                        <button class="btn-icon" onclick="openNotificationSettings()">⚙️</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="notifications-list">
+                            <div class="notification-item urgent">
+                                <div class="notification-icon">🚨</div>
+                                <div class="notification-content">
+                                    <h4>Health Alert</h4>
+                                    <p>Luna's temperature is elevated. Consider veterinary consultation.</p>
+                                    <span class="notification-time">2 minutes ago</span>
+                                </div>
+                                <div class="notification-actions">
+                                    <button class="btn-small">View</button>
+                                </div>
+                            </div>
+                            <div class="notification-item reminder">
+                                <div class="notification-icon">💉</div>
+                                <div class="notification-content">
+                                    <h4>Vaccination Due</h4>
+                                    <p>Max's annual vaccination is due in 3 days.</p>
+                                    <span class="notification-time">1 hour ago</span>
+                                </div>
+                                <div class="notification-actions">
+                                    <button class="btn-small">Schedule</button>
+                                </div>
+                            </div>
+                            <div class="notification-item info">
+                                <div class="notification-icon">📊</div>
+                                <div class="notification-content">
+                                    <h4>Weekly Report</h4>
+                                    <p>Your pet's health summary is ready.</p>
+                                    <span class="notification-time">1 day ago</span>
+                                </div>
+                                <div class="notification-actions">
+                                    <button class="btn-small">View</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family & Care Team -->
+                <div class="card team-card">
+                    <div class="card-header">
+                        <h3>👥 Family & Care Team</h3>
+                        <button class="btn-primary" id="addMemberBtn">+ Add Member</button>
+                    </div>
+                    <div class="card-content">
+                        <div class="team-members">
+                            <div class="member-item">
+                                <div class="member-avatar">
+                                    <%= user.name.charAt(0).toUpperCase() %>
+                                </div>
+                                <div class="member-info">
+                                    <h4><%= user.name %></h4>
+                                    <p class="member-role">Owner</p>
+                                    <p class="member-status online">Online</p>
+                                </div>
+                                <div class="member-actions">
+                                    <button class="btn-role">Admin</button>
+                                </div>
+                            </div>
+                            
+                            <div class="member-item">
+                                <div class="member-avatar">S</div>
+                                <div class="member-info">
+                                    <h4>Sarah Johnson</h4>
+                                    <p class="member-role">Family Member</p>
+                                    <p class="member-status offline">Last seen 2h ago</p>
+                                </div>
+                                <div class="member-actions">
+                                    <button class="btn-role">Viewer</button>
+                                    <button class="btn-remove">Remove</button>
+                                </div>
+                            </div>
+                            
+                            <div class="member-item">
+                                <div class="member-avatar">D</div>
+                                <div class="member-info">
+                                    <h4>Dr. Smith</h4>
+                                    <p class="member-role">Veterinarian</p>
+                                    <p class="member-status online">Online</p>
+                                </div>
+                                <div class="member-actions">
+                                    <button class="btn-role">Vet</button>
+                                    <button class="btn-remove">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="/scripts/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | Pawlytics</title>
+  <link rel="stylesheet" href="/styles/login.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a class="logo" href="/">🐶 Pawlytics</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/analyze">Analyze</a></li>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="form-wrapper">
+    <form method="POST" action="/login" class="login-form" id="loginForm">
+      <h2>🔐 Login to Pawlytics</h2>
+
+      <% if (typeof errorMessage !== 'undefined' && errorMessage && errorMessage.length > 0) { %>
+        <div class="error-message"><%= errorMessage %></div>
+      <% } %>
+
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" placeholder="Email" required />
+
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" placeholder="Password" required />
+
+      <button type="submit">Login</button>
+
+      <p class="footer-link">Don’t have an account? <a href="/signup">Sign Up</a></p>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Pawlytics | Your Dog’s Smart Health Partner</p>
+  </footer>
+</body>
+</html>

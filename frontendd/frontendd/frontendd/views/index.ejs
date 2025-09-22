@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Analyze Dog Symptoms – Pawlytics</title>
+  <link rel="stylesheet" href="/styles/index.css" />
+  <script defer src="/scripts/analyze.js"></script>
+</head>
+<body>
+  <!-- Loader -->
+  <div class="loader-wrapper" id="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a class="logo" href="/">🐶 Pawlytics</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#features">Features</a></li>
+        <li><a href="/#how">How It Works</a></li>
+        <li><a href="/analyze">Start Diagnosis</a></li>
+        <% if (typeof user !== 'undefined' && user) { %>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li>
+            <form method="POST" action="/logout" style="display: inline;">
+              <button type="submit" style="background: none; border: none; color: inherit; cursor: pointer; font-size: inherit; text-decoration: underline;">Logout</button>
+            </form>
+          </li>
+        <% } else { %>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Signup</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Analyze Section -->
+  <section class="analyze-section reveal">
+    <div class="container">
+      <h1>🐾 Analyze Your Dog's Symptoms</h1>
+      <p class="intro">Describe your dog’s health issue or upload a photo/audio file for instant AI analysis.</p>
+
+      <form id="analysisForm" class="form-box">
+        <!-- Pet Selection -->
+        <div class="form-group">
+          <label for="dogSelect">🐕 Select Your Pet:</label>
+          <select name="dogId" id="dogSelect" required>
+            <option value="">Loading pets...</option>
+          </select>
+          <a href="/add-dog" class="add-pet-link">+ Add New Pet</a>
+        </div>
+
+        <!-- Symptoms Description -->
+        <div class="form-group">
+          <label for="symptomText">📝 Describe the Symptoms *</label>
+          <textarea name="symptoms" id="symptomText" rows="4" placeholder="Example: My dog has been vomiting and seems lethargic for the past day..." required></textarea>
+          <small>Describe what you've observed - what's different about your dog's behavior or appearance?</small>
+          
+          <div class="symptom-examples">
+            <h4>💡 Good Examples:</h4>
+            <ul>
+              <li>"My dog is shaking his head and scratching his ears constantly"</li>
+              <li>"Vomiting and diarrhea for two days, not eating"</li>
+              <li>"Limping on front right leg, crying when touched"</li>
+              <li>"Bad breath, yellow teeth, dropping food when eating"</li>
+              <li>"Lethargic, not interested in playing, sleeping all day"</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Demographics  -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="breed">🐕 Breed (Optional)</label>
+            <input type="text" name="breed" id="breed" placeholder="e.g., Labrador Retriever">
+          </div>
+          
+          <div class="form-group">
+            <label for="age">📅 Age (years) (Optional)</label>
+            <input type="number" name="age" id="age" min="0" max="25" placeholder="e.g., 5">
+          </div>
+          
+          <div class="form-group">
+            <label for="sex">⚥ Sex (Optional)</label>
+            <select name="sex" id="sex">
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Neutered Male">Neutered Male</option>
+              <option value="Spayed Female">Spayed Female</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- File Uploads -->
+        <div class="file-group">
+          <label for="imageUpload">📷 Upload photos of skin conditions or affected areas:</label>
+          <input type="file" name="images" accept="image/*" id="imageUpload" multiple>
+          <p class="preview" id="imagePreview">No files selected</p>
+        </div>
+
+        <div class="file-group">
+          <label for="audioUpload">🎤 Upload audio recordings of coughing, breathing, or vocal symptoms:</label>
+          <input type="file" name="audio" accept="audio/*" id="audioUpload" multiple>
+          <p class="preview" id="audioPreview">No files selected</p>
+        </div>
+
+        <div class="disclaimer">
+          <p>⚠️ <strong>Important:</strong> This is not a substitute for professional veterinary care. For emergencies, contact your veterinarian immediately.</p>
+        </div>
+
+        <button type="submit" class="cta-button" id="submitBtn">
+          <span class="btn-text">🔍 Analyze Now</span>
+          <span class="btn-loading">⏳ Analyzing...</span>
+        </button>
+      </form>
+
+      <!-- Results Section -->
+      <div id="resultsSection" class="results-section hidden">
+        <h3>📊 Analysis Results</h3>
+        <div id="resultsContent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Pawlytics | Your Dog’s Smart Health Partner</p>
+  </footer>
+</body>
+</html>

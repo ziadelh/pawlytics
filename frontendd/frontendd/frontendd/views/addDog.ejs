@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Dog Profile | Pawlytics</title>
+  <link rel="stylesheet" href="/styles/addDog.css" />
+  <script defer src="/scripts/addDog.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a class="logo" href="/">🐶 Pawlytics</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/analyze">Analyze</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="form-wrapper">
+    <h2>🐕 Add Your Dog's Profile</h2>
+    
+    <% if (typeof message !== 'undefined' && message) { %>
+      <div class="message"><%= message %></div>
+    <% } %>
+
+    <form action="/add-dog" method="POST" enctype="multipart/form-data" id="addDogForm">
+      <label for="name">Dog's Name:</label>
+      <input type="text" name="name" id="name" required />
+
+      <label for="breed">Breed:</label>
+      <input type="text" name="breed" id="breed" required />
+
+      <label for="age">Age:</label>
+      <input type="number" name="age" id="age" min="0" required />
+
+      <label for="image">Upload Photo (optional):</label>
+      <input type="file" name="image" id="image" accept="image/*" />
+      <p class="preview" id="previewText">No file selected</p>
+
+      <button type="submit">Add Dog</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Pawlytics | Smart Pet Health Tracking</p>
+  </footer>
+</body>
+</html>

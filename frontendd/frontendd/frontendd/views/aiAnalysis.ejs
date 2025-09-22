@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Health Analysis - PetAI</title>
+    <link rel="stylesheet" href="/styles/ai-analysis.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🤖 AI Health Analysis</h1>
+            <p>Comprehensive health analysis using AI models for text, audio, and image data</p>
+        </header>
+
+        <div class="analysis-tabs">
+            <button class="tab-btn active" data-tab="comprehensive">Comprehensive Analysis</button>
+            <button class="tab-btn" data-tab="text">Text Analysis</button>
+            <button class="tab-btn" data-tab="audio">Audio Analysis</button>
+            <button class="tab-btn" data-tab="image">Image Analysis</button>
+        </div>
+
+        <!-- Comprehensive Analysis Tab -->
+        <div id="comprehensive" class="tab-content active">
+            <div class="analysis-form">
+                <h3>Multi-Modal Health Analysis</h3>
+                
+                <div class="form-section">
+                    <label for="symptom-text">Symptom Description:</label>
+                    <textarea id="symptom-text" placeholder="Describe your pet's symptoms in detail..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="breed">Breed:</label>
+                        <input type="text" id="breed" placeholder="e.g., Golden Retriever">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" placeholder="Years">
+                    </div>
+                    <div class="form-group">
+                        <label for="sex">Sex:</label>
+                        <select id="sex">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="upload-section">
+                    <div class="upload-group">
+                        <label for="image-upload">Upload Image:</label>
+                        <input type="file" id="image-upload" accept="image/*">
+                        <small>Upload photos of skin conditions, wounds, or affected areas</small>
+                    </div>
+                    
+                    <div class="upload-group">
+                        <label for="audio-upload">Upload Audio:</label>
+                        <input type="file" id="audio-upload" accept="audio/*,video/mp4">
+                        <small>Upload recordings of coughing, breathing, or vocal symptoms</small>
+                    </div>
+                </div>
+
+                <button id="analyze-comprehensive" class="analyze-btn">🔍 Analyze All Data</button>
+            </div>
+        </div>
+
+        <!-- Text Analysis Tab -->
+        <div id="text" class="tab-content">
+            <div class="analysis-form">
+                <h3>Text Symptom Analysis</h3>
+                
+                <div class="form-section">
+                    <label for="text-symptoms">Symptom Description:</label>
+                    <textarea id="text-symptoms" placeholder="Describe your pet's symptoms in detail..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="text-breed">Breed:</label>
+                        <input type="text" id="text-breed" placeholder="e.g., Golden Retriever">
+                    </div>
+                    <div class="form-group">
+                        <label for="text-age">Age:</label>
+                        <input type="number" id="text-age" placeholder="Years">
+                    </div>
+                    <div class="form-group">
+                        <label for="text-sex">Sex:</label>
+                        <select id="text-sex">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button id="analyze-text" class="analyze-btn">📝 Analyze Text</button>
+            </div>
+        </div>
+
+        <!-- Audio Analysis Tab -->
+        <div id="audio" class="tab-content">
+            <div class="analysis-form">
+                <h3>Audio Analysis</h3>
+                
+                <div class="upload-section">
+                    <div class="upload-group">
+                        <label for="audio-file">Upload Audio File:</label>
+                        <input type="file" id="audio-file" accept="audio/*,video/mp4">
+                        <small>Upload recordings of coughing, breathing, or vocal symptoms</small>
+                    </div>
+                </div>
+
+                <button id="analyze-audio" class="analyze-btn">🎵 Analyze Audio</button>
+            </div>
+        </div>
+
+        <!-- Image Analysis Tab -->
+        <div id="image" class="tab-content">
+            <div class="analysis-form">
+                <h3>Image Analysis</h3>
+                
+                <div class="form-section">
+                    <label for="image-symptoms">Additional Symptoms (Optional):</label>
+                    <textarea id="image-symptoms" placeholder="Describe any additional symptoms..."></textarea>
+                </div>
+
+                <div class="upload-section">
+                    <div class="upload-group">
+                        <label for="image-file">Upload Image:</label>
+                        <input type="file" id="image-file" accept="image/*">
+                        <small>Upload photos of skin conditions, wounds, or affected areas</small>
+                    </div>
+                </div>
+
+                <button id="analyze-image" class="analyze-btn">📷 Analyze Image</button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="results-section" style="display: none;">
+            <h3>Analysis Results</h3>
+            <div id="results-content"></div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Analyzing data with AI models...</p>
+        </div>
+    </div>
+
+    <script src="/scripts/ai-analysis.js"></script>
+</body>
+</html>

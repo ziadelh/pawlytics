@@ -1,0 +1,1 @@
+{"model_name": "emilyalsentzer/Bio_ClinicalBERT", "num_classes": 20, "max_length": 128, "device": "cuda"}

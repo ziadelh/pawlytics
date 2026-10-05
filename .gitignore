@@ -1,0 +1,35 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+
+# User uploads (keep the folders, not the files)
+app/public/uploads/*
+!app/public/uploads/images/
+!app/public/uploads/audio/
+app/public/uploads/images/*
+app/public/uploads/audio/*
+!app/public/uploads/images/.gitkeep
+!app/public/uploads/audio/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Trained model weights (too large for git - see README "Model weights")
+*.pth
+*.h5
+*.keras
+*.safetensors
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

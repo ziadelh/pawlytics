@@ -1,16 +1,31 @@
 {
-  "name": "grad-project-front-end",
+  "name": "pawlytics",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Pawlytics - multimodal AI pet health assistant: Express web app + Flask service serving text, audio and image disease-classification models for dogs.",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "start:env": "node --env-file=.env app.js",
     "dev": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "pet-health",
+    "dog",
+    "machine-learning",
+    "multimodal",
+    "express",
+    "flask",
+    "bert",
+    "yamnet",
+    "efficientnet",
+    "graduation-project"
+  ],
+  "author": "Ziad Elhussein",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.6.0"
+  },
   "dependencies": {
     "axios": "^1.6.0",
     "bcrypt": "^6.0.0",

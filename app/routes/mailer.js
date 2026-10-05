@@ -1,16 +1,24 @@
 const nodemailer = require('nodemailer');
 
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'ziadelhussein@gmail.com',
-    pass: process.env.EMAIL_PASS  
-  }
-});
+// SMTP credentials come from the environment (see .env.example).
+// If they are not set, welcome emails are skipped instead of crashing signup.
+const { EMAIL_USER, EMAIL_PASS } = process.env;
+
+const transporter = EMAIL_USER && EMAIL_PASS
+  ? nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: EMAIL_USER, pass: EMAIL_PASS }
+    })
+  : null;
 
 function sendWelcomeEmail(to, name) {
+    if (!transporter) {
+      console.warn('EMAIL_USER / EMAIL_PASS not set - skipping welcome email');
+      return;
+    }
+
     const mailOptions = {
-    from: '"Pawlytics WebApp" <ziadelhussein@gmail.com>',
+    from: `"Pawlytics WebApp" <${EMAIL_USER}>`,
     to: to,
     subject: '🐾 Welcome to Pawlytics — Your Pet’s New Best Friend!',
     html: `<p>Hi ${name},<br><br>

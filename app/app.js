@@ -43,7 +43,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'dev-secret-key-change-in-production-12345',
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/petai' }),
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI || 'mongodb://localhost:27017/petai' }),
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,

@@ -15,6 +15,7 @@ condition, an urgency level and suggested next steps.
 ![PyTorch](https://img.shields.io/badge/PyTorch-text%20%26%20image-EE4C2C?logo=pytorch&logoColor=white)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-audio-FF6F00?logo=tensorflow&logoColor=white)
 ![HuggingFace](https://img.shields.io/badge/Hugging%20Face-Bio__ClinicalBERT-FFD21E?logo=huggingface&logoColor=black)
+![License: MIT](https://img.shields.io/badge/License-MIT-2dd4bf)
 
 *Graduation project · Ziad Elhussein*
 
@@ -41,6 +42,7 @@ condition, an urgency level and suggested next steps.
 - [Datasets](#datasets)
 - [Limitations & responsible use](#limitations--responsible-use)
 - [Author](#author)
+- [License](#license)
 
 ## What it does
 
@@ -115,6 +117,11 @@ CSP, input sanitisation, upload type and size limits, and per-user data access c
 - **MongoDB** running locally (or a connection string)
 - **ffmpeg / ffprobe** on your `PATH` (used to read uploaded audio metadata)
 - The **trained model weights** (see below)
+
+```bash
+git clone https://github.com/ziadelh/pawlytics.git
+cd pawlytics
+```
 
 ### 1 · Get the model weights
 
@@ -234,3 +241,8 @@ online sources. Please check each source's licence before redistributing.
 [GitHub](https://github.com/ziadelh)
 
 If you find the project interesting, a ⭐ is always appreciated.
+
+## License
+
+Released under the [MIT License](LICENSE). The datasets and pretrained models it builds on
+(Dog Aging Project data, Bio_ClinicalBERT, YAMNet, EfficientNet) keep their own licences.
